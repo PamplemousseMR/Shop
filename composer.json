@@ -1,0 +1,25 @@
+{
+    "name": "vendor/package",
+    "description": "Decription projet",
+    "licence": "GPL3.0+",
+    "authors": 
+    [
+        {   
+            "name": "pamplemousseMR",
+            "email": "romain.manciaux@gmail.com"
+        }
+    ],
+    "require": 
+    {
+        "twig/twig": "~1.0",
+        "slim/slim": "^3.0",
+        "slim/twig-view": "*",
+        "doctrine/orm" : "2.*",
+        "symfony/yaml":"*" 
+    },
+    "autoload":
+    {
+        "classmap":["model/"],
+        "files":["controller/home.php"]
+    }
+}
