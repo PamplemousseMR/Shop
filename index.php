@@ -1,7 +1,7 @@
 <?php
 
-    require('vendor/autoload.php');
-    require('bootstrap.php');
+    require_once('vendor/autoload.php');
+    require_once('bootstrap.php');
 
     $loader = new Twig_Loader_Filesystem("templates");
     $twig = new Twig_Environment($loader, array(
@@ -13,8 +13,8 @@
             'displayErrorDetails' => true
         ]
     ]);
-    $app->get('/', homeRoot); 
-    $app->get('/home', homeRoot); 
+    $app->get('/', '\Home:router'); 
+    $app->get('/home', '\Home:router'); 
     $app->run(); 
     
 ?>

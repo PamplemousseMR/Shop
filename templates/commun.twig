@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+
   {% block head %}{% endblock %}
-  <title>{% block title %}Default{% endblock %}</title>
+  <title>
+    {% block title %}_title_{% endblock %}
+  </title>
 </head>
 <body>
   <div id="content">
-    {% block content %}Default{% endblock %}
+    {% block content %}_content_{% endblock %}
   </div>
 </body>
 </html>
