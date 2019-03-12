@@ -8,11 +8,12 @@ class Home implements IController {
         global $entityManager;
         $itemRepository = $entityManager->getRepository('Item');
         $items = $itemRepository->findAll();
-        
+        shuffle($items);
+
         global $twig; 
         $template = $twig ->loadTemplate('home.twig');    
         return $response->write( $template ->render(array(
-            'items' => $items
+            'items' => array_slice($items, 0, 9)
         )));
     }
 
