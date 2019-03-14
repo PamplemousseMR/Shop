@@ -1,0 +1,16 @@
+{% extends "subTemplate/commun.twig" %} 
+
+{% block title %}
+  Search
+{% endblock %} 
+
+{% block content %}
+<div class="list-group">
+  {% for item in items %}
+    <a href="#" class="list-group-item list-group-item-action bg-secondary" style="margin:10px">
+      {{item.getName}}
+      <img class="rounded float-right" src="{{item.getIcon}}" alt="{{item.getName}}" style="width:32px;height:32px">
+    </a>
+  {% endfor %}
+</div>
+{% endblock %} 

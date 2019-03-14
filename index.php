@@ -15,6 +15,7 @@
     ]);
     $app->get('/', '\Home:router'); 
     $app->get('/home', '\Home:router'); 
+    $app->get('/search', '\Search:router'); 
     $app->run(); 
     
 ?>

@@ -20,6 +20,6 @@
     "autoload":
     {
         "classmap":["model/"],
-        "files":["controller/home.php"]
+        "files":["controller/home.php", "controller/search.php"]
     }
 }
