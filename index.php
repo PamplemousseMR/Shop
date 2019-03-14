@@ -3,7 +3,7 @@
     require_once('vendor/autoload.php');
     require_once('bootstrap.php');
 
-    $loader = new Twig_Loader_Filesystem("templates");
+    $loader = new Twig_Loader_Filesystem("template");
     $twig = new Twig_Environment($loader, array(
         'cache' => false
     ));

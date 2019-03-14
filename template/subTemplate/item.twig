@@ -1,4 +1,4 @@
-<div class="card" style="height:400px;width:300px;margin:20px">
+<div class="card" style="height:300px;width:300px;margin:20px">
   <div class="row">
     <div class="col-12 d-flex justify-content-center">
       <img class="card-img-top" src="{{item.getIcon}}" alt="{{item.getName}}" style="width:32px;height:32px;margin:50px">
@@ -6,6 +6,6 @@
   </div>
   <div class="card-body">
     <h5 class="card-title d-flex justify-content-center">{{item.getName}}</h5>
-    <p class="card-text d-flex justify-content-center">{{item.getDescription}}</p>
+    <p class="card-text d-flex justify-content-center">{{item.getDescription|length > 150 ? item.getDescription|slice(0, 150) ~ '...' : item.getDescription}}</p>
   </div>
 </div>
