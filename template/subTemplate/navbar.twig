@@ -11,6 +11,9 @@
       <a class="nav-link" data-toggle="modal" data-target="#signInModal">
         <img class="material-icons mx-auto d-block" src="asset/signin.svg" style="width:21px;height:21px" />
       </a>
+      <a class="nav-link" data-toggle="modal" data-target="#signUpModal">
+        <img class="material-icons mx-auto d-block" src="asset/signup.svg" style="width:21px;height:21px" />
+      </a>
     {% else %}
       <a class="nav-link" href="/sign-out">
         <img class="material-icons mx-auto d-block" src="asset/signout.svg" style="width:21px;height:21px" />
@@ -43,8 +46,8 @@
         <div class="modal-body">
           <form action="/sign-in" method="post">
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" name="email" placeholder="Email">
+              <label for="mail">Mail</label>
+              <input type="text" class="form-control" name="mail" placeholder="Mail">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
@@ -53,6 +56,60 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Connection</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>    
+  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title mx-auto">Sign up</h5>
+        </div>
+        <div class="modal-body">
+          <form action="/sign-up" name="signUp" method="post">
+            <div class="form-group">
+              <label for="up-mail">Mail</label>
+              <input type="text" class="form-control" id="up-mail" name="up-mail" placeholder="Mail" onfocus="resetMail()" onblur="verifyMailForm()">
+              <p id="mail-error" class="text-error mx-auto d-block"></p>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="up-lastname">Lastname</label>
+                  <input type="text" class="form-control" id="up-lastname" name="up-lastname" placeholder="Lastname" onfocus="resetLast()" onblur="verifyLastForm()">
+                  <p id="lastname-error" class="text-error mx-auto d-block"></p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="up-firstname">Firstname</label>
+                  <input type="text" class="form-control" id="up-firstname" name="up-firstname" placeholder="Firstname" onfocus="resetFirst()" onblur="verifyFirstForm()">
+                  <p id="firstname-error" class="text-error mx-auto d-block"></p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="up-password">Password</label>
+                  <input type="password" class="form-control" id="up-password" name="up-password" placeholder="Password" onfocus="resetPasswords()" onblur="verifyPassForm()">
+                  <p id="password-error" class="text-error mx-auto d-block"></p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="up-password-confirm">Password</label>
+                  <input type="password" class="form-control" id="up-password-confirm" name="up-password-confirm" placeholder="Confirm password" onfocus="resetPasswords()" onblur="verifyPassForm()">
+                  <p id="password-confirm-error" class="text-error mx-auto d-block"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="verifyInscription()">Create account</button>
+                </div>
+              </div>
             </div>
           </form>
         </div>

@@ -41,24 +41,26 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-{% if connected is defined %}
+{% if (failure is defined) or (success is defined)  %}
   <script type="text/javascript">
     $(window).on('load',function(){
-        {% if connected == false %}
-          $('#failureModal').modal('show');
-        {% endif %}
+      $('#modal-info').modal('show');
     });
   </script>
-{% endif %}
-<div class="modal fade" id="failureModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title mx-auto">Sign in failure</h5>
-      </div>
-      <div class="modal-footer">
+  <div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          {% if failure is defined %}
+          <h5 class="modal-title mx-auto text-warning">{{failure}}</h5>
+          {% else %}
+          <h5 class="modal-title mx-auto text-success">{{success}}</h5>
+          {% endif %}
+        </div>
+        <div class="modal-footer">
+        </div>
       </div>
     </div>
   </div>
-</div>
+{% endif %}
 {% endblock %} 

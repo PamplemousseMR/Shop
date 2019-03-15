@@ -6,6 +6,10 @@ Website that sell Isaac's items.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+### Prerequisites
+
+- [Composer](https://getcomposer.org/doc/00-intro.md) :  Composer is a tool for dependency management in PHP.
+
 ### Generation
 
 - composer install
