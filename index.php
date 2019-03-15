@@ -14,7 +14,9 @@
         ]
     ]);
     $app->get('/', '\Home:router'); 
-    $app->get('/home', '\Home:router'); 
+    $app->get('/home', '\Home:router');
+    $app->post('/sign-in', '\SignIn:router'); 
+    $app->get('/sign-out', '\SignOut:router'); 
     $app->get('/search', '\Search:router'); 
     $app->run(); 
     

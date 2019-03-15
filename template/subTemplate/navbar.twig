@@ -7,9 +7,15 @@
       <a class="nav-link" href="/search">Search</a>
     </li>
     <div class="mx-auto"></div>
-    <li class="nav-item">
-      <a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Sign in</a>
-    </li>
+    {% if isConnected == false %}
+      <a class="nav-link" data-toggle="modal" data-target="#signInModal">
+        <img class="material-icons mx-auto d-block" src="asset/signin.svg" style="width:21px;height:21px" />
+      </a>
+    {% else %}
+      <a class="nav-link" href="/sign-out">
+        <img class="material-icons mx-auto d-block" src="asset/signout.svg" style="width:21px;height:21px" />
+      </a>
+    {% endif %}
     <li class="nav-item">
       <a class="nav-link" target="_blank" href="https://github.com/PamplemousseMR?tab=repositories">
         <img class="material-icons mx-auto d-block" src="asset/github.svg" style="width:21px;height:21px" />
@@ -27,28 +33,30 @@
     </li>
   </ul>
 </nav>
-<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title mx-auto">Sign in</h5>
-      </div>
-      <div class="modal-body">
-        <form action="/home" method="get">
-          <div class="form-group">
-            <label for="login">Login</label>
-            <input type="text" class="form-control" id="login" placeholder="Login">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Connection</button>
-          </div>
-        </form>
+{% if isConnected == false %}
+  <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title mx-auto">Sign in</h5>
+        </div>
+        <div class="modal-body">
+          <form action="/sign-in" method="post">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Connection</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>    
+{% endif %}
