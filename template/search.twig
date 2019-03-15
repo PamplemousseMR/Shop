@@ -5,11 +5,22 @@
 {% endblock %} 
 
 {% block content %}
+<form class="form-inline d-flex justify-content-center">
+  <div class="form-group">
+    <label for="research" class="bmd-label-floating">Research</label>
+    <input type="text" class="form-control" id="research">
+  </div>
+  <span class="form-group bmd-form-group">
+    <button type="button" class="btn bmd-btn-fab bmd-btn-fab-sm">
+      <i class="material-icons mx-auto d-block">search</i>
+    </button>
+  </span>
+</form>
 <div class="list-group">
   {% for item in items %}
-    <a href="#" class="list-group-item list-group-item-action bg-secondary" style="margin:10px">
-      {{item.getName}}
-      <img class="rounded float-right" src="{{item.getIcon}}" alt="{{item.getName}}" style="width:32px;height:32px">
+    <a href="#" class="list-group-item list-group-item-action">
+      <div>{{item.getName}}</div>
+      <img class="mx-auto d-block" src="{{item.getIcon}}" alt="{{item.getName}}" style="width:32px;height:32px">
     </a>
   {% endfor %}
 </div>
