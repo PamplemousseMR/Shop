@@ -21,9 +21,10 @@
     {
         "classmap":["model/"],
         "files":["controller/home.php",
-                "controller/search.php",
                 "controller/signIn.php",
                 "controller/signOut.php",
-                "controller/signUp.php"]
+                "controller/signUp.php",
+                "controller/search.php",
+                "controller/profile.php"]
     }
 }

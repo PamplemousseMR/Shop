@@ -6,12 +6,7 @@ class SignOut extends IController {
     
     public static function router($request, $response, $args) { 
         parent::disconnect();
-
-        global $entityManager;
-        $itemRepository = $entityManager->getRepository('Item');
-        $items = $itemRepository->findAll();
-        shuffle($items);
-        parent::render($response, 'home.twig', array('items' => array_slice($items, 0, 9)));
+        return $response->withStatus(302)->withHeader('Location', '/home');
     }
 
 }

@@ -6,6 +6,11 @@
     <li class="nav-item">
       <a class="nav-link" href="/search">Search</a>
     </li>
+    {% if isConnected %}
+      <li class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+      </li>
+    {% endif %}
     <div class="mx-auto"></div>
     {% if isConnected == false %}
       <a class="nav-link" data-toggle="modal" data-target="#signInModal">
