@@ -23,8 +23,9 @@
         "files":["controller/home.php",
                 "controller/signIn.php",
                 "controller/signOut.php",
+                "controller/signDown.php",
                 "controller/signUp.php",
-                "controller/search.php",
-                "controller/profile.php"]
+                "controller/profile.php",
+                "controller/search.php"]
     }
 }

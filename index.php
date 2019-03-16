@@ -16,10 +16,11 @@
     $app->get('/', '\Home:router'); 
     $app->get('/home', '\Home:router');
     $app->post('/sign-in', '\SignIn:router'); 
-    $app->get('/sign-out', '\SignOut:router'); 
-    $app->post('/sign-up', '\SignUp:router');
-    $app->get('/search', '\Search:router'); 
+    $app->get('/sign-out', '\SignOut:router');
+    $app->post('/sign-down', '\SignDown:router');
+    $app->get('/sign-up', '\SignUp:router'); 
     $app->get('/profile', '\Profile:router'); 
+    $app->get('/search', '\Search:router'); 
     $app->run(); 
     
 ?>

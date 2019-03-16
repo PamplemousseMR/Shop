@@ -62,35 +62,35 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="up-lastname">Lastname</label>
-                <input type="text" class="form-control" id="up-lastname" name="up-lastname" onfocus="resetLast('up-lastname-error')" onblur="verifyLastForm('up-lastname', 'up-lastname-error')">
+                <input type="text" class="form-control" id="up-lastname" name="up-lastname" value="{{user.getLastname|upper}}" onfocus="resetLast('up-lastname-error')" onblur="verifyLastForm('up-lastname', 'up-lastname-error')">
                 <p id="up-lastname-error" class="text-danger"></p>
               </div>
             </div>
             <div class="col-6">
               <div class="form-group">
                 <label for="up-firstname">Firstname</label>
-                <input type="text" class="form-control" id="up-firstname" name="up-firstname" onfocus="resetFirst('up-firstname-error')" onblur="verifyFirstForm('up-firstname', 'up-firstname-error')">
+                <input type="text" class="form-control" id="up-firstname" name="up-firstname" value="{{user.getFirstname|capitalize}}" onfocus="resetFirst('up-firstname-error')" onblur="verifyFirstForm('up-firstname', 'up-firstname-error')">
                 <span id="up-firstname-error" class="text-danger"></span>
               </div>
             </div>
           </div>
           <div class="form-group">
             <label for="up-phone">Phone</label>
-            <input type="text" class="form-control" id="up-phone" name="up-phone" onfocus="resetPhone('up-phone-error')" onblur="verifyPhoneForm('up-phone', 'up-phone-error')">
+            <input type="text" class="form-control" id="up-phone" name="up-phone"  value="{{user.getPhone}}" onfocus="resetPhone('up-phone-error')" onblur="verifyPhoneForm('up-phone', 'up-phone-error')">
             <span id="up-phone-error" class="text-danger"></span>
           </div>
           <div class="row">
             <div class="col-6">
               <div class="form-group">
                 <label for="up-number">Number</label>
-                <input type="text" class="form-control" id="up-number" name="up-number" onfocus="resetNumber('up-number-error')" onblur="verifyNumberForm('up-number', 'up-number-error')">
+                <input type="text" class="form-control" id="up-number" name="up-number" value="{{user.getNumber}}" onfocus="resetNumber('up-number-error')" onblur="verifyNumberForm('up-number', 'up-number-error')">
                 <span id="up-number-error" class="text-danger"></span>
               </div>
             </div>
             <div class="col-6">
               <div class="form-group">
                 <label for="up-street">Street</label>
-                <input type="text" class="form-control" name="up-street">
+                <input type="text" class="form-control" name="up-street" value="{{user.getStreet|lower}}">
               </div>
             </div>
           </div>
@@ -98,14 +98,14 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="up-zipcode">Zipcode</label>
-                <input type="text" class="form-control" id="up-zipcode" name="up-zipcode" onfocus="resetZipcode('up-zipcode-error')" onblur="verifyZipcodeForm('up-zipcode', 'up-zipcode-error')">
+                <input type="text" class="form-control" id="up-zipcode" name="up-zipcode" value="{{user.getZipcode}}" onfocus="resetZipcode('up-zipcode-error')" onblur="verifyZipcodeForm('up-zipcode', 'up-zipcode-error')">
                 <span id="up-zipcode-error" class="text-danger"></span>
               </div>
             </div>
             <div class="col-6">
               <div class="form-group">
                 <label for="up-town">Town</label>
-                <input type="text" class="form-control" name="up-town">
+                <input type="text" class="form-control" name="up-town" value="{{user.getTown|capitalize}}">
               </div>
             </div>
           </div>
