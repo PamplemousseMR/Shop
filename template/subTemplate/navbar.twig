@@ -74,43 +74,83 @@
           <h5 class="modal-title mx-auto">Sign up</h5>
         </div>
         <div class="modal-body">
-          <form action="/sign-up" method="post">
+          <form action="/sign-up" name="signUp" method="post">
             <div class="form-group">
-              <label for="mail">Mail</label>
-              <input type="text" class="form-control" name="mail" placeholder="Mail"  onfocus="resetMail()" onblur="verifyMailForm()">
-              <span id="erreurmail"></span>
+              <label for="up-mail">Mail*</label>
+              <input type="text" class="form-control" id="up-mail" name="up-mail" placeholder="Mail" onfocus="resetMail()" onblur="verifyMailForm()">
+              <span id="mail-error" class="text-danger"></span>
             </div>
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
-                  <label for="lastname">Email</label>
-                  <input type="text" class="form-control" name="lastname" placeholder="Lastname">
+                  <label for="up-lastname">Lastname*</label>
+                  <input type="text" class="form-control" id="up-lastname" name="up-lastname" placeholder="Lastname" onfocus="resetLast()" onblur="verifyLastForm()">
+                  <p id="lastname-error" class="text-danger"></p>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <label for="firstname">Email</label>
-                  <input type="text" class="form-control" name="firstname" placeholder="Firstname">
+                  <label for="up-firstname">Firstname*</label>
+                  <input type="text" class="form-control" id="up-firstname" name="up-firstname" placeholder="Firstname" onfocus="resetFirst()" onblur="verifyFirstForm()">
+                  <span id="firstname-error" class="text-danger"></span>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" name="password" placeholder="Password">
+                  <label for="up-password">Password*</label>
+                  <input type="password" class="form-control" id="up-password" name="up-password" placeholder="Password" onfocus="resetPasswords()" onblur="verifyPassForm()">
+                  <span id="password-error" class="text-danger"></span>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <label for="passwordConfirm">Password</label>
-                  <input type="password" class="form-control" name="passwordConfirm" placeholder="Confirm password">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Create account</button>
+                  <label for="up-confirm">Confirm*</label>
+                  <input type="password" class="form-control" id="up-confirm" name="up-confirm" placeholder="Confirm" onfocus="resetPasswords()" onblur="verifyPassForm()">
+                  <span id="confirm-error" class="text-danger"></span>
                 </div>
               </div>
+            </div>
+            <hr class="my-4 mx-5">
+            <div class="form-group">
+              <label for="up-phone">Phone</label>
+              <input type="text" class="form-control" id="up-phone" name="up-phone" placeholder="Phone" onfocus="resetPhone()" onblur="verifyPhoneForm()">
+              <span id="phone-error"></span>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="up-number">Number</label>
+                  <input type="text" class="form-control" id="up-number" name="up-number" placeholder="Number" onfocus="resetNumber()" onblur="verifyNumberForm()">
+                  <span id="number-error" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="up-street">Street</label>
+                  <input type="text" class="form-control" name="up-street" placeholder="Street">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="up-zipcode">Zipcode</label>
+                  <input type="text" class="form-control" id="up-zipcode" name="up-zipcode" placeholder="Zipcode" onfocus="resetZipcode()" onblur="verifyZipcodeForm()">
+                  <span id="zipcode-error"></span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="up-town">Town</label>
+                  <input type="text" class="form-control" name="up-town" placeholder="Town">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="verifyInscription()">Create account</button>
             </div>
           </form>
         </div>

@@ -5,7 +5,7 @@
 {% endblock %} 
 
 {% block content %}
-<div class="jumbotron bg-light" style="background:transparent!important">
+<div class="jumbotron bg-light" style="background:transparent !important">
   <div class="row ml-5">
     <i class="material-icons mr-4 my-auto">info</i>
     <div>
@@ -23,7 +23,7 @@
     <div>
       <p class="lead my-auto">{{user.getNumber}} {{user.getStreet}}</p>
       <p class="lead my-auto">{{user.getZipcode}}</p>
-      <p class="lead my-auto">{{user.getTown}}</p>
+      <p class="lead my-auto">{{user.getTown|capitalize}}</p>
     </div>
   </div>
 </div>

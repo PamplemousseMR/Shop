@@ -3,7 +3,9 @@ function verifyInscription() {
 	var last = verifyLast();
 	var first = verifyFirst();
 	var pass = verifyPass();
-	if (mail && last && first && pass) {
+	var phone = verifyPhoneForm();
+	var zipcode = verifyZipcodeForm();
+	if (mail && last && first && pass && phone && zipcode) {
 		document.signUp.submit();
 	}
 }
@@ -47,8 +49,8 @@ function validateEmail(mail){
 }
 
 function verifyLastForm(){
-	var first = document.getElementById('up-lastname').value;
-	if(first != '' && !validateName(first)){
+	var last = document.getElementById('up-lastname').value;
+	if(last != '' && !validateName(last)){
 		setError('lastname-error','Invalid lastname');
 	} else {
 		resetLast();
@@ -58,8 +60,8 @@ function verifyLastForm(){
 }
 
 function verifyLast(){
-	var mail = document.getElementById('up-lastname').value;
-	if(mail == ''){
+	var last = document.getElementById('up-lastname').value;
+	if(last == ''){
 		setError('lastname-error', 'Required fields');
 		return false;
 	}
@@ -80,8 +82,8 @@ function verifyFirstForm(){
 }
 
 function verifyFirst(){
-	var mail = document.getElementById('up-firstname').value;
-	if(mail == ''){
+	var first = document.getElementById('up-firstname').value;
+	if(first == ''){
 		setError('firstname-error', 'Required fields');
 		return false;
 	}
@@ -97,7 +99,7 @@ function validateName(name) {
 
 function verifyPassForm(){
 	var pass1 = document.getElementById('up-password').value;
-	var pass2 = document.getElementById('up-password-confirm').value;
+	var pass2 = document.getElementById('up-confirm').value;
 
 	if(pass1 != ''){
 		if(!validatePassword(pass1)){
@@ -113,7 +115,7 @@ function verifyPassForm(){
 	}
 	else{
 		resetPasswords();
-		document.getElementById('up-password-confirm').value = '';
+		document.getElementById('up-confirm').value = '';
 		return true;
 	}
 	return false;
@@ -121,12 +123,12 @@ function verifyPassForm(){
 
 function verifyPass(){
 	var pass1 = document.getElementById('up-password').value;
-	var pass2 = document.getElementById('up-password-confirm').value;
+	var pass2 = document.getElementById('up-confirm').value;
 	if(pass1 == ''){
 		setError('password-error', 'Required fields');
 		return false;
 	} else if(pass2 == ''){
-		setError('password-confirm-error', 'Required fields');
+		setError('confirm-error', 'Required fields');
 		return false;
 	}
 	else {
@@ -137,6 +139,54 @@ function verifyPass(){
 function validatePassword(pass){
 	var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 	return re.test(pass);
+}
+
+function verifyPhoneForm(){
+	var phone = document.getElementById('up-phone').value;
+	if(phone != '' && !validatePhone(phone)){
+		setError('phone-error','Invalid phone');
+	} else {
+		resetPhone();
+		return true;
+	}
+	return false;
+}
+
+function validatePhone(phone){
+	var re = /^[0-9]{10}$/;
+	return re.test(phone);
+}
+
+function verifyNumberForm(){
+	var number = document.getElementById('up-number').value;
+	if(number != '' && !validateNumber(number)){
+		setError('number-error','Invalid number');
+	} else {
+		resetNumber();
+		return true;
+	}
+	return false;
+}
+
+function validateNumber(number){
+	var re = /^[0-9]*$/;
+	return re.test(number);
+}
+
+function verifyZipcodeForm(){
+	var zipcode = document.getElementById('up-zipcode').value;
+	if(zipcode != '' && !validateZipcode(zipcode)){
+		setError('zipcode-error','Invalid zipcode');
+	} else {
+		resetNumber();
+		return true;
+	}
+	return false;
+}
+
+function validateZipcode(zipcode){
+	var re = /^[0-9]{5}$/;
+	return re.test(zipcode);
 }
 
 function resetMail() {
@@ -153,5 +203,17 @@ function resetFirst() {
 
 function resetPasswords(){
 	resetError('password-error');
-	resetError('password-confirm-error');
+	resetError('confirm-error');
+}
+
+function resetPhone(){
+	resetError('phone-error');
+}
+
+function resetNumber(){
+	resetError('number-error');
+}
+
+function resetZipcode(){
+	resetError('zipcode-error');
 }
