@@ -11,6 +11,15 @@ abstract class IController {
         return $response->write( $template ->render($array));
     }
     
+    public static function displayHome($response, $array) {
+        global $entityManager;
+        $itemRepository = $entityManager->getRepository('Item');
+        $items = $itemRepository->findAll();
+        shuffle($items);
+        $param = array('items' => array_slice($items, 0, 9));
+        self::render($response, 'home.twig', array_merge($param, $array));
+    }
+    
     public static function isConnected() {
         session_start();
         return isset($_SESSION['connected']);

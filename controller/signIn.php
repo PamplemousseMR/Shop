@@ -20,14 +20,11 @@ class SignIn extends IController {
             }
         }
 
-        $itemRepository = $entityManager->getRepository('Item');
-        $items = $itemRepository->findAll();
-        shuffle($items);
-        $array = array('items' => array_slice($items, 0, 9));
+        $array = array();
         if($connected == false) {
             $array['message'] = 'Sign in failure';
         }
-        parent::render($response, 'home.twig', $array);
+        parent::displayHome($response, $array);
     }
 
 }
