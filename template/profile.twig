@@ -5,26 +5,115 @@
 {% endblock %} 
 
 {% block content %}
-<div class="jumbotron bg-light" style="background:transparent !important">
-  <div class="row ml-5">
-    <i class="material-icons mr-4 my-auto">info</i>
-    <div>
-      <h1 class="display-4 my-auto">{{user.getLastname|upper}} {{user.getFirstname|capitalize}}</h1>
-      <p class="lead my-auto">{{user.getMail}}</p>
+<div class="row d-flex justify-content-center">
+  <div class="jumbotron bg-light col-6" style="background:transparent !important">
+    <div class="row">
+      <i class="material-icons mr-4 my-auto">info</i>
+      <div>
+        <h1 class="display-4 my-auto">{{user.getLastname|upper}} {{user.getFirstname|capitalize}}</h1>
+        <p class="lead my-auto">{{user.getMail}}</p>
+      </div>
     </div>
-  </div>
-  <div class="row ml-5">
-    <i class="material-icons mr-4 my-auto">phone</i>
-    <p class="lead my-auto">{{user.getPhone}}</p>
-  </div>
-  <hr class="my-4 mx-5">
-  <div class="row ml-5">
-    <i class="material-icons mr-4 my-auto">location_on</i>
-    <div>
-      <p class="lead my-auto">{{user.getNumber}} {{user.getStreet}}</p>
-      <p class="lead my-auto">{{user.getZipcode}}</p>
-      <p class="lead my-auto">{{user.getTown|capitalize}}</p>
+    <div class="row">
+      <i class="material-icons mr-4 my-auto">phone</i>
+      <p class="lead my-auto">{{user.getPhone}}</p>
     </div>
+    <hr class="my-4">
+    <div class="row">
+      <i class="material-icons mr-4 my-auto">location_on</i>
+      <div>
+        <p class="lead my-auto">{{user.getNumber}} {{user.getStreet|lower}}</p>
+        <p class="lead my-auto">{{user.getZipcode}}</p>
+        <p class="lead my-auto">{{user.getTown|capitalize}}</p>
+      </div>
+    </div>
+      <div class="mt-5">
+        <h1 class="display-3 my-auto mb-3 text-center">Update account informations</h1>
+        <form action="#" name="" method="post">
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="up-password">Old password</label>
+                <input type="password" class="form-control" name="up-password">
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="up-password">New password</label>
+                <input type="password" class="form-control" id="up-password" name="up-password" onfocus="resetPasswords('up-password-error', 'up-confirm-error')" onblur="verifyPassForm('up-password', 'up-confirm', 'up-password-error', 'up-confirm-error')">
+                <span id="up-password-error" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="up-confirm">Confirm password</label>
+                <input type="password" class="form-control" id="up-confirm" name="up-confirm" onfocus="resetPasswords('up-password-error', 'up-confirm-error')" onblur="verifyPassForm('up-password', 'up-confirm', 'up-password-error', 'up-confirm-error')">
+                <span id="up-confirm-error" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary">Update password</button>
+          </div>
+        </form>
+        <form action="#" name="" method="post">
+          <hr class="my-4 mx-5">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="up-lastname">Lastname</label>
+                <input type="text" class="form-control" id="up-lastname" name="up-lastname" onfocus="resetLast('up-lastname-error')" onblur="verifyLastForm('up-lastname', 'up-lastname-error')">
+                <p id="up-lastname-error" class="text-danger"></p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="up-firstname">Firstname</label>
+                <input type="text" class="form-control" id="up-firstname" name="up-firstname" onfocus="resetFirst('up-firstname-error')" onblur="verifyFirstForm('up-firstname', 'up-firstname-error')">
+                <span id="up-firstname-error" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="up-phone">Phone</label>
+            <input type="text" class="form-control" id="up-phone" name="up-phone" onfocus="resetPhone('up-phone-error')" onblur="verifyPhoneForm('up-phone', 'up-phone-error')">
+            <span id="up-phone-error" class="text-danger"></span>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="up-number">Number</label>
+                <input type="text" class="form-control" id="up-number" name="up-number" onfocus="resetNumber('up-number-error')" onblur="verifyNumberForm('up-number', 'up-number-error')">
+                <span id="up-number-error" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="up-street">Street</label>
+                <input type="text" class="form-control" name="up-street">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="up-zipcode">Zipcode</label>
+                <input type="text" class="form-control" id="up-zipcode" name="up-zipcode" onfocus="resetZipcode('up-zipcode-error')" onblur="verifyZipcodeForm('up-zipcode', 'up-zipcode-error')">
+                <span id="up-zipcode-error" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="up-town">Town</label>
+                <input type="text" class="form-control" name="up-town">
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary">Update account</button>
+          </div>
+        </form>
+      </div>
   </div>
 </div>
 {% endblock %} 

@@ -49,18 +49,19 @@
           <h5 class="modal-title mx-auto">Sign in</h5>
         </div>
         <div class="modal-body">
-          <form action="/sign-in" method="post">
+          <form action="/sign-in" name="signIn" method="post">
             <div class="form-group">
-              <label for="mail">Mail</label>
-              <input type="email" class="form-control" name="mail" placeholder="Mail">
+              <label for="in-mail">Mail</label>
+              <input type="email" class="form-control" id="in-mail" name="in-mail" placeholder="Mail" onfocus="resetMail('up-mail-error')" onblur="verifyMailForm('in-mail', 'in-mail-error')">
+              <span id="in-mail-error" class="text-danger"></span>
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" placeholder="Password">
+              <label for="in-password">Password</label>
+              <input type="password" class="form-control" name="in-password" placeholder="Password">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Connection</button>
+              <button type="button" class="btn btn-primary" onclick="verifySignin()">Connection</button>
             </div>
           </form>
         </div>
@@ -77,22 +78,22 @@
           <form action="/sign-up" name="signUp" method="post">
             <div class="form-group">
               <label for="up-mail">Mail*</label>
-              <input type="text" class="form-control" id="up-mail" name="up-mail" placeholder="Mail" onfocus="resetMail()" onblur="verifyMailForm()">
-              <span id="mail-error" class="text-danger"></span>
+              <input type="text" class="form-control" id="up-mail" name="up-mail" placeholder="Mail" onfocus="resetMail('up-mail-error')" onblur="verifyMailForm('up-mail', 'up-mail-error')">
+              <span id="up-mail-error" class="text-danger"></span>
             </div>
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
                   <label for="up-lastname">Lastname*</label>
-                  <input type="text" class="form-control" id="up-lastname" name="up-lastname" placeholder="Lastname" onfocus="resetLast()" onblur="verifyLastForm()">
-                  <p id="lastname-error" class="text-danger"></p>
+                  <input type="text" class="form-control" id="up-lastname" name="up-lastname" placeholder="Lastname" onfocus="resetLast('up-lastname-error')" onblur="verifyLastForm('up-lastname', 'up-lastname-error')">
+                  <p id="up-lastname-error" class="text-danger"></p>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                   <label for="up-firstname">Firstname*</label>
-                  <input type="text" class="form-control" id="up-firstname" name="up-firstname" placeholder="Firstname" onfocus="resetFirst()" onblur="verifyFirstForm()">
-                  <span id="firstname-error" class="text-danger"></span>
+                  <input type="text" class="form-control" id="up-firstname" name="up-firstname" placeholder="Firstname" onfocus="resetFirst('up-firstname-error')" onblur="verifyFirstForm('up-firstname', 'up-firstname-error')">
+                  <span id="up-firstname-error" class="text-danger"></span>
                 </div>
               </div>
             </div>
@@ -100,30 +101,30 @@
               <div class="col-6">
                 <div class="form-group">
                   <label for="up-password">Password*</label>
-                  <input type="password" class="form-control" id="up-password" name="up-password" placeholder="Password" onfocus="resetPasswords()" onblur="verifyPassForm()">
-                  <span id="password-error" class="text-danger"></span>
+                  <input type="password" class="form-control" id="up-password" name="up-password" placeholder="Password" onfocus="resetPasswords('up-password-error', 'up-confirm-error')" onblur="verifyPassForm('up-password', 'up-confirm', 'up-password-error', 'up-confirm-error')">
+                  <span id="up-password-error" class="text-danger"></span>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                   <label for="up-confirm">Confirm*</label>
-                  <input type="password" class="form-control" id="up-confirm" name="up-confirm" placeholder="Confirm" onfocus="resetPasswords()" onblur="verifyPassForm()">
-                  <span id="confirm-error" class="text-danger"></span>
+                  <input type="password" class="form-control" id="up-confirm" name="up-confirm" placeholder="Confirm" onfocus="resetPasswords('up-password-error', 'up-confirm-error')" onblur="verifyPassForm('up-password', 'up-confirm', 'up-password-error', 'up-confirm-error')">
+                  <span id="up-confirm-error" class="text-danger"></span>
                 </div>
               </div>
             </div>
             <hr class="my-4 mx-5">
             <div class="form-group">
               <label for="up-phone">Phone</label>
-              <input type="text" class="form-control" id="up-phone" name="up-phone" placeholder="Phone" onfocus="resetPhone()" onblur="verifyPhoneForm()">
-              <span id="phone-error"></span>
+              <input type="text" class="form-control" id="up-phone" name="up-phone" placeholder="Phone" onfocus="resetPhone('up-phone-error')" onblur="verifyPhoneForm('up-phone', 'up-phone-error')">
+              <span id="up-phone-error" class="text-danger"></span>
             </div>
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
                   <label for="up-number">Number</label>
-                  <input type="text" class="form-control" id="up-number" name="up-number" placeholder="Number" onfocus="resetNumber()" onblur="verifyNumberForm()">
-                  <span id="number-error" class="text-danger"></span>
+                  <input type="text" class="form-control" id="up-number" name="up-number" placeholder="Number" onfocus="resetNumber('up-number-error')" onblur="verifyNumberForm('up-number', 'up-number-error')">
+                  <span id="up-number-error" class="text-danger"></span>
                 </div>
               </div>
               <div class="col-6">
@@ -137,8 +138,8 @@
               <div class="col-6">
                 <div class="form-group">
                   <label for="up-zipcode">Zipcode</label>
-                  <input type="text" class="form-control" id="up-zipcode" name="up-zipcode" placeholder="Zipcode" onfocus="resetZipcode()" onblur="verifyZipcodeForm()">
-                  <span id="zipcode-error"></span>
+                  <input type="text" class="form-control" id="up-zipcode" name="up-zipcode" placeholder="Zipcode" onfocus="resetZipcode('up-zipcode-error')" onblur="verifyZipcodeForm('up-zipcode', 'up-zipcode-error')">
+                  <span id="up-zipcode-error" class="text-danger"></span>
                 </div>
               </div>
               <div class="col-6">
@@ -150,7 +151,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="verifyInscription()">Create account</button>
+              <button type="button" class="btn btn-primary" onclick="verifySignup()">Create account</button>
             </div>
           </form>
         </div>

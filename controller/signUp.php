@@ -2,7 +2,7 @@
 
 require_once('php/IController.php');
 
-class SignUp extends IController { 
+class SignDown extends IController { 
     
     public static function router($request, $response, $args) { 
         if(isset($_POST["up-mail"]) && isset($_POST["up-lastname"]) && isset($_POST["up-firstname"]) && isset($_POST["up-password"]) && isset($_POST["up-password-confirm"])) {
