@@ -6,7 +6,7 @@ class Profile extends IController {
     
     public static function router($request, $response, $args) { 
         if(parent::isConnected()) {
-            parent::render($response, 'profile.twig', array());
+            parent::render($response, 'profile.twig', array('user' => parent::getUser()));
         } else {
             return $response->withStatus(302)->withHeader('Location', '/home');
         }

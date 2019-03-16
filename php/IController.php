@@ -18,14 +18,16 @@ abstract class IController {
     
     public static function connect($user) {
         session_start();
-        $_SESSION['connected'] = true;
-        $_SESSION['mail'] = $user->getMail();
-        $_SESSION['lastename'] = $user->getLasname();
-        $_SESSION['mail'] = $user->getFirstname();
+        $_SESSION['connected'] = $user;
     }
 
     public static function disconnect() {
         session_start();
         unset($_SESSION['connected']) ;
+    }
+    
+    public static function getUser() {
+        session_start();
+        return $_SESSION['connected'];
     }
 }

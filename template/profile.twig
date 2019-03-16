@@ -5,5 +5,26 @@
 {% endblock %} 
 
 {% block content %}
-profile
+<div class="jumbotron bg-light" style="background:transparent!important">
+  <div class="row ml-5">
+    <i class="material-icons mr-4 my-auto">info</i>
+    <div>
+      <h1 class="display-4 my-auto">{{user.getLastname|upper}} {{user.getFirstname|capitalize}}</h1>
+      <p class="lead my-auto">{{user.getMail}}</p>
+    </div>
+  </div>
+  <div class="row ml-5">
+    <i class="material-icons mr-4 my-auto">phone</i>
+    <p class="lead my-auto">{{user.getPhone}}</p>
+  </div>
+  <hr class="my-4 mx-5">
+  <div class="row ml-5">
+    <i class="material-icons mr-4 my-auto">location_on</i>
+    <div>
+      <p class="lead my-auto">{{user.getNumber}} {{user.getStreet}}</p>
+      <p class="lead my-auto">{{user.getZipcode}}</p>
+      <p class="lead my-auto">{{user.getTown}}</p>
+    </div>
+  </div>
+</div>
 {% endblock %} 

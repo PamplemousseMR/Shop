@@ -52,7 +52,7 @@
           <form action="/sign-in" method="post">
             <div class="form-group">
               <label for="mail">Mail</label>
-              <input type="text" class="form-control" name="mail" placeholder="Mail">
+              <input type="email" class="form-control" name="mail" placeholder="Mail">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
@@ -74,45 +74,41 @@
           <h5 class="modal-title mx-auto">Sign up</h5>
         </div>
         <div class="modal-body">
-          <form action="/sign-up" name="signUp" method="post">
+          <form action="/sign-up" method="post">
             <div class="form-group">
-              <label for="up-mail">Mail</label>
-              <input type="text" class="form-control" id="up-mail" name="up-mail" placeholder="Mail" onfocus="resetMail()" onblur="verifyMailForm()">
-              <p id="mail-error" class="text-error mx-auto d-block"></p>
+              <label for="mail">Mail</label>
+              <input type="text" class="form-control" name="mail" placeholder="Mail"  onfocus="resetMail()" onblur="verifyMailForm()">
+              <span id="erreurmail"></span>
             </div>
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
-                  <label for="up-lastname">Lastname</label>
-                  <input type="text" class="form-control" id="up-lastname" name="up-lastname" placeholder="Lastname" onfocus="resetLast()" onblur="verifyLastForm()">
-                  <p id="lastname-error" class="text-error mx-auto d-block"></p>
+                  <label for="lastname">Email</label>
+                  <input type="text" class="form-control" name="lastname" placeholder="Lastname">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <label for="up-firstname">Firstname</label>
-                  <input type="text" class="form-control" id="up-firstname" name="up-firstname" placeholder="Firstname" onfocus="resetFirst()" onblur="verifyFirstForm()">
-                  <p id="firstname-error" class="text-error mx-auto d-block"></p>
+                  <label for="firstname">Email</label>
+                  <input type="text" class="form-control" name="firstname" placeholder="Firstname">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
-                  <label for="up-password">Password</label>
-                  <input type="password" class="form-control" id="up-password" name="up-password" placeholder="Password" onfocus="resetPasswords()" onblur="verifyPassForm()">
-                  <p id="password-error" class="text-error mx-auto d-block"></p>
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <label for="up-password-confirm">Password</label>
-                  <input type="password" class="form-control" id="up-password-confirm" name="up-password-confirm" placeholder="Confirm password" onfocus="resetPasswords()" onblur="verifyPassForm()">
-                  <p id="password-confirm-error" class="text-error mx-auto d-block"></p>
+                  <label for="passwordConfirm">Password</label>
+                  <input type="password" class="form-control" name="passwordConfirm" placeholder="Confirm password">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" onclick="verifyInscription()">Create account</button>
+                  <button type="submit" class="btn btn-primary">Create account</button>
                 </div>
               </div>
             </div>
