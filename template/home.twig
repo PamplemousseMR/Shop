@@ -41,20 +41,18 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-{% if connected is defined %}
+{% if message is defined %}
   <script type="text/javascript">
     $(window).on('load',function(){
-        {% if connected == false %}
-          $('#failureModal').modal('show');
-        {% endif %}
+      $('#modalMessage').modal('show');
     });
   </script>
 {% endif %}
-<div class="modal fade" id="failureModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title mx-auto text-warning">Sign in failure</h5>
+        <h5 class="modal-title mx-auto text-warning">{{message}}</h5>
       </div>
       <div class="modal-footer">
       </div>

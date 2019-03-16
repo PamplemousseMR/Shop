@@ -4,6 +4,10 @@
   Profile
 {% endblock %} 
 
+{% block head %}
+  <script type="text/javascript" src="js/profile.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="row d-flex justify-content-center">
   <div class="jumbotron bg-light col-6" style="background:transparent !important">
@@ -27,33 +31,35 @@
         <p class="lead my-auto">{{user.getTown|capitalize}}</p>
       </div>
     </div>
-      <div class="mt-5">
-        <h1 class="display-3 my-auto mb-3 text-center">Update account informations</h1>
-        <form action="#" name="" method="post">
+      <div class="mt-5 mx-5">
+        <div class="mb-3">
+          <h1 class="display-4 my-auto text-center">Update account informations</h1>
+        </div>
+        <form action="/sign-down" name="updatePassword" method="post">
           <div class="row">
             <div class="col-4">
               <div class="form-group">
-                <label for="up-password">Old password</label>
-                <input type="password" class="form-control" name="up-password">
+                <label for="do-password">Old password</label>
+                <input type="password" class="form-control" name="do-old">
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <label for="up-password">New password</label>
-                <input type="password" class="form-control" id="up-password" name="up-password" onfocus="resetPasswords('up-password-error', 'up-confirm-error')" onblur="verifyPassForm('up-password', 'up-confirm', 'up-password-error', 'up-confirm-error')">
-                <span id="up-password-error" class="text-danger"></span>
+                <label for="do-password">New password</label>
+                <input type="password" class="form-control" id="do-password" name="do-password" onfocus="resetPasswords('do-password-error', 'do-confirm-error')" onblur="verifyPassForm('do-password', 'do-confirm', 'do-password-error', 'do-confirm-error')">
+                <span id="do-password-error" class="text-danger"></span>
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <label for="up-confirm">Confirm password</label>
-                <input type="password" class="form-control" id="up-confirm" name="up-confirm" onfocus="resetPasswords('up-password-error', 'up-confirm-error')" onblur="verifyPassForm('up-password', 'up-confirm', 'up-password-error', 'up-confirm-error')">
-                <span id="up-confirm-error" class="text-danger"></span>
+                <label for="do-confirm">Confirm password</label>
+                <input type="password" class="form-control" id="do-confirm" name="do-confirm" onfocus="resetPasswords('do-password-error', 'do-confirm-error')" onblur="verifyPassForm('do-password', 'do-confirm', 'do-password-error', 'do-confirm-error')">
+                <span id="do-confirm-error" class="text-danger"></span>
               </div>
             </div>
           </div>
           <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-primary">Update password</button>
+            <button type="button" class="btn btn-primary" onclick="verifyPassword()">Update password</button>
           </div>
         </form>
         <form action="#" name="" method="post">
@@ -61,51 +67,51 @@
           <div class="row">
             <div class="col-6">
               <div class="form-group">
-                <label for="up-lastname">Lastname</label>
-                <input type="text" class="form-control" id="up-lastname" name="up-lastname" value="{{user.getLastname|upper}}" onfocus="resetLast('up-lastname-error')" onblur="verifyLastForm('up-lastname', 'up-lastname-error')">
-                <p id="up-lastname-error" class="text-danger"></p>
+                <label for="do-lastname">Lastname</label>
+                <input type="text" class="form-control" id="do-lastname" name="do-lastname" value="{{user.getLastname|upper}}" onfocus="resetLast('do-lastname-error')" onblur="verifyLastForm('do-lastname', 'do-lastname-error')">
+                <p id="do-lastname-error" class="text-danger"></p>
               </div>
             </div>
             <div class="col-6">
               <div class="form-group">
-                <label for="up-firstname">Firstname</label>
-                <input type="text" class="form-control" id="up-firstname" name="up-firstname" value="{{user.getFirstname|capitalize}}" onfocus="resetFirst('up-firstname-error')" onblur="verifyFirstForm('up-firstname', 'up-firstname-error')">
-                <span id="up-firstname-error" class="text-danger"></span>
+                <label for="do-firstname">Firstname</label>
+                <input type="text" class="form-control" id="do-firstname" name="do-firstname" value="{{user.getFirstname|capitalize}}" onfocus="resetFirst('do-firstname-error')" onblur="verifyFirstForm('do-firstname', 'do-firstname-error')">
+                <span id="do-firstname-error" class="text-danger"></span>
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="up-phone">Phone</label>
-            <input type="text" class="form-control" id="up-phone" name="up-phone"  value="{{user.getPhone}}" onfocus="resetPhone('up-phone-error')" onblur="verifyPhoneForm('up-phone', 'up-phone-error')">
-            <span id="up-phone-error" class="text-danger"></span>
+            <label for="do-phone">Phone</label>
+            <input type="text" class="form-control" id="do-phone" name="do-phone"  value="{{user.getPhone}}" onfocus="resetPhone('do-phone-error')" onblur="verifyPhoneForm('do-phone', 'do-phone-error')">
+            <span id="do-phone-error" class="text-danger"></span>
           </div>
           <div class="row">
             <div class="col-6">
               <div class="form-group">
-                <label for="up-number">Number</label>
-                <input type="text" class="form-control" id="up-number" name="up-number" value="{{user.getNumber}}" onfocus="resetNumber('up-number-error')" onblur="verifyNumberForm('up-number', 'up-number-error')">
-                <span id="up-number-error" class="text-danger"></span>
+                <label for="do-number">Number</label>
+                <input type="text" class="form-control" id="do-number" name="do-number" value="{{user.getNumber}}" onfocus="resetNumber('do-number-error')" onblur="verifyNumberForm('do-number', 'do-number-error')">
+                <span id="do-number-error" class="text-danger"></span>
               </div>
             </div>
             <div class="col-6">
               <div class="form-group">
-                <label for="up-street">Street</label>
-                <input type="text" class="form-control" name="up-street" value="{{user.getStreet|lower}}">
+                <label for="do-street">Street</label>
+                <input type="text" class="form-control" name="do-street" value="{{user.getStreet|lower}}">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-6">
               <div class="form-group">
-                <label for="up-zipcode">Zipcode</label>
-                <input type="text" class="form-control" id="up-zipcode" name="up-zipcode" value="{{user.getZipcode}}" onfocus="resetZipcode('up-zipcode-error')" onblur="verifyZipcodeForm('up-zipcode', 'up-zipcode-error')">
-                <span id="up-zipcode-error" class="text-danger"></span>
+                <label for="do-zipcode">Zipcode</label>
+                <input type="text" class="form-control" id="do-zipcode" name="do-zipcode" value="{{user.getZipcode}}" onfocus="resetZipcode('do-zipcode-error')" onblur="verifyZipcodeForm('do-zipcode', 'do-zipcode-error')">
+                <span id="do-zipcode-error" class="text-danger"></span>
               </div>
             </div>
             <div class="col-6">
               <div class="form-group">
-                <label for="up-town">Town</label>
-                <input type="text" class="form-control" name="up-town" value="{{user.getTown|capitalize}}">
+                <label for="do-town">Town</label>
+                <input type="text" class="form-control" name="do-town" value="{{user.getTown|capitalize}}">
               </div>
             </div>
           </div>
