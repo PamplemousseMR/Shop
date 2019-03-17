@@ -29,7 +29,9 @@
         <p class="lead my-auto">{{user.getPhone}}</p>
       </div>
     {% endif %}
-    <hr class="my-4">
+    <div class="mx-5">
+      <hr class="my-4 mx-5">
+    </div>
     {% if user.getNumber != '' or user.getStreet != '' or user.getZipcode != '' or user.getTown != '' %}
       <div class="row">
         <i class="material-icons mr-4 my-auto">location_on</i>
@@ -52,9 +54,6 @@
       </div>
     {% endif %}
     <div class="mt-5 mx-5">
-      <div class="mx-5">
-        <hr class="my-4 mx-5">
-      </div>
       <div class="mb-3">
         <h1 class="display-4 my-auto text-center">Update account informations</h1>
       </div>

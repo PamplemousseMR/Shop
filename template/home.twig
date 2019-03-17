@@ -17,15 +17,22 @@
         <div class="row">
           {% for j in 0..2 %}
             <div class="col-4 d-flex justify-content-center">
-              <div class="card m-1">
-                <img class="card-img-top mx-auto my-5 d-block" src="{{items[i*3+j].getIcon}}" alt="{{items[i*3+j].getName}}"></img>
-                <div class="card-body">
-                  <h5 class="card-title text-center">{{items[i*3+j].getName}}</h5>
-{# >lg && <xl #}  <p class="card-text text-justify d-none d-lg-block d-xl-none">{{items[i*3+j].getDescription|length > 70 ? items[i*3+j].getDescription|slice(0, 70) ~ '...' : items[i*3+j].getDescription}}</p>
-{# >xl #}         <p class="card-text text-justify d-none d-xl-block">{{items[i*3+j].getDescription|length > 125 ? items[i*3+j].getDescription|slice(0, 125) ~ '...' : items[i*3+j].getDescription}}</p>
-                  <p class="card-text text-right">{{items[i*3+j].getPrice}}</p>
+              <div class="card m-1 px-3">
+                <div class="row">
+                  <img class="card-img-top mx-auto my-5 d-block" src="{{items[i*3+j].getIcon}}" alt="{{items[i*3+j].getName}}"></img>
                 </div>
-                <!--img class="card-text" src="asset/coin.png"></img-->
+                <div class="row">
+                  <div class="card-body">
+                    <h5 class="card-title text-center">{{items[i*3+j].getName}}</h5>
+  {# >lg && <xl #}  <p class="card-text text-justify d-none d-lg-block d-xl-none">{{items[i*3+j].getDescription|length > 70 ? items[i*3+j].getDescription|slice(0, 70) ~ '...' : items[i*3+j].getDescription}}</p>
+  {# >xl #}         <p class="card-text text-justify d-none d-xl-block">{{items[i*3+j].getDescription|length > 125 ? items[i*3+j].getDescription|slice(0, 125) ~ '...' : items[i*3+j].getDescription}}</p>
+                  </div>
+                </div>
+                <div class="row my-2">
+                  <div class="card-body">
+                    <p class="card-text text-right my-auto">{{items[i*3+j].getPrice}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></p>
+                  </div>
+                </div>
               </div>
             </div>
           {% endfor %}
