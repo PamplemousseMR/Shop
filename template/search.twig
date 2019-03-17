@@ -16,11 +16,11 @@
     </button>
   </span>
 </form>
-<div class="list-group">
+<div class="list-group w-25 mx-auto">
   {% for item in items %}
-    <a href="#" class="list-group-item list-group-item-action">
+    <a href="#" class="list-group-item list-group-item-action my-1 bg-light rounded">
       <div>{{item.getName}}</div>
-      <img class="mx-auto d-block" src="{{item.getIcon}}" alt="{{item.getName}}" style="width:32px;height:32px">
+      <span class="badge ml-auto badge-pill">{{item.getPrice}}</span>
     </a>
   {% endfor %}
 </div>

@@ -1,3 +1,7 @@
+.carousel-control-next-icon {
+  background-image: none;
+}
+
 .carousel-control-next-icon:after
 {
   content: '>';
@@ -16,6 +20,7 @@
     border-radius: .3em;
     height: 300px;
     min-width: 300px;
+    max-width: 300px;
   }
 }
 
