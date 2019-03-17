@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="row d-flex justify-content-center">
+<div class="d-flex justify-content-center">
   <div class="jumbotron bg-light" style="background:transparent !important">
     <div class="row">
       <i class="material-icons mr-4 my-auto">info</i>
@@ -23,110 +23,130 @@
         <p class="lead my-auto">{{user.getMail}}</p>
       </div>
     </div>
-    <div class="row">
-      <i class="material-icons mr-4 my-auto">phone</i>
-      <p class="lead my-auto">{{user.getPhone}}</p>
-    </div>
+    {% if user.getPhone != '' %}
+      <div class="row">
+        <i class="material-icons mr-4 my-auto">phone</i>
+        <p class="lead my-auto">{{user.getPhone}}</p>
+      </div>
+    {% endif %}
     <hr class="my-4">
-    <div class="row">
-      <i class="material-icons mr-4 my-auto">location_on</i>
-      <div>
-        <p class="lead my-auto">{{user.getNumber}} {{user.getStreet|lower}}</p>
-        <p class="lead my-auto">{{user.getZipcode}}</p>
-        <p class="lead my-auto">{{user.getTown|capitalize}}</p>
-      </div>
-    </div>
-      <div class="mt-5 mx-5">
-        <div class="mb-3">
-          <h1 class="display-4 my-auto text-center">Update account informations</h1>
+    {% if user.getNumber != '' or user.getStreet != '' or user.getZipcode != '' or user.getTown != '' %}
+      <div class="row">
+        <i class="material-icons mr-4 my-auto">location_on</i>
+        <div>
+          <p class="lead my-auto">
+            {% if user.getNumber != '' %}
+              {{user.getNumber}} 
+            {% endif %}
+            {% if user.getStreet != '' %}
+              {{user.getStreet|lower}}
+            {% endif %}
+          </p>
+          {% if user.getZipcode != '' %}
+            <p class="lead my-auto">{{user.getZipcode}}</p>
+          {% endif %}
+          {% if user.getTown != '' %}
+            <p class="lead my-auto">{{user.getTown|capitalize}}</p>
+          {% endif %}
         </div>
-        <form action="/sign-down" class="mx-5" name="updatePassword" method="post">
-          <input name="hiddenPassword" type="hidden">
-          <div class="row">
-            <div class="col-4">
-              <div class="form-group">
-                <label for="do-password">Old password</label>
-                <input type="password" class="form-control" name="do-old">
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="form-group">
-                <label for="do-password">New password</label>
-                <input type="password" class="form-control" id="do-password" name="do-password" onfocus="resetPasswords('do-password-error', 'do-confirm-error')" onblur="verifyPassForm('do-password', 'do-confirm', 'do-password-error', 'do-confirm-error')">
-                <span id="do-password-error" class="text-danger"></span>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="form-group">
-                <label for="do-confirm">Confirm password</label>
-                <input type="password" class="form-control" id="do-confirm" name="do-confirm" onfocus="resetPasswords('do-password-error', 'do-confirm-error')" onblur="verifyPassForm('do-password', 'do-confirm', 'do-password-error', 'do-confirm-error')">
-                <span id="do-confirm-error" class="text-danger"></span>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-primary" onclick="verifyPassword()">Update password</button>
-          </div>
-        </form>
-        <hr class="my-4 mx-5">
-        <form action="/sign-down" class="mx-5" name="updateInformations" method="post">
-          <input name="hiddenUpdate" type="hidden">
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label for="do-lastname">Lastname*</label>
-                <input type="text" class="form-control" id="do-lastname" name="do-lastname" value="{{user.getLastname|upper}}" onfocus="resetLast('do-lastname-error')" onblur="verifyLastForm('do-lastname', 'do-lastname-error')">
-                <p id="do-lastname-error" class="text-danger"></p>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label for="do-firstname">Firstname*</label>
-                <input type="text" class="form-control" id="do-firstname" name="do-firstname" value="{{user.getFirstname|capitalize}}" onfocus="resetFirst('do-firstname-error')" onblur="verifyFirstForm('do-firstname', 'do-firstname-error')">
-                <span id="do-firstname-error" class="text-danger"></span>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="do-phone">Phone</label>
-            <input type="text" class="form-control" id="do-phone" name="do-phone"  value="{{user.getPhone}}" onfocus="resetPhone('do-phone-error')" onblur="verifyPhoneForm('do-phone', 'do-phone-error')">
-            <span id="do-phone-error" class="text-danger"></span>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label for="do-number">Number</label>
-                <input type="text" class="form-control" id="do-number" name="do-number" value="{{user.getNumber}}" onfocus="resetNumber('do-number-error')" onblur="verifyNumberForm('do-number', 'do-number-error')">
-                <span id="do-number-error" class="text-danger"></span>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label for="do-street">Street</label>
-                <input type="text" class="form-control" name="do-street" value="{{user.getStreet|lower}}">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label for="do-zipcode">Zipcode</label>
-                <input type="text" class="form-control" id="do-zipcode" name="do-zipcode" value="{{user.getZipcode}}" onfocus="resetZipcode('do-zipcode-error')" onblur="verifyZipcodeForm('do-zipcode', 'do-zipcode-error')">
-                <span id="do-zipcode-error" class="text-danger"></span>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label for="do-town">Town</label>
-                <input type="text" class="form-control" name="do-town" value="{{user.getTown|capitalize}}">
-              </div>
-            </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-primary" onclick="verifyInformation()">Update account</button>
-          </div>
-        </form>
       </div>
+    {% endif %}
+    <div class="mt-5 mx-5">
+      <div class="mx-5">
+        <hr class="my-4 mx-5">
+      </div>
+      <div class="mb-3">
+        <h1 class="display-4 my-auto text-center">Update account informations</h1>
+      </div>
+      <form action="/sign-down" class="mx-5" name="updatePassword" method="post">
+        <input name="hiddenPassword" type="hidden">
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="do-password">Old password</label>
+              <input type="password" class="form-control" name="do-old">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="do-password">New password</label>
+              <input type="password" class="form-control" id="do-password" name="do-password" onfocus="resetPasswords('do-password-error', 'do-confirm-error')" onblur="verifyPassForm('do-password', 'do-confirm', 'do-password-error', 'do-confirm-error')">
+              <span id="do-password-error" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="do-confirm">Confirm password</label>
+              <input type="password" class="form-control" id="do-confirm" name="do-confirm" onfocus="resetPasswords('do-password-error', 'do-confirm-error')" onblur="verifyPassForm('do-password', 'do-confirm', 'do-password-error', 'do-confirm-error')">
+              <span id="do-confirm-error" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-primary" onclick="verifyPassword()">Update password</button>
+        </div>
+      </form>
+      <div class="mx-5">
+        <hr class="my-4 mx-5">
+      </div>
+      <form action="/sign-down" class="mx-5" name="updateInformations" method="post">
+        <input name="hiddenUpdate" type="hidden">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="do-lastname">Lastname*</label>
+              <input type="text" class="form-control" id="do-lastname" name="do-lastname" value="{{user.getLastname|upper}}" onfocus="resetLast('do-lastname-error')" onblur="verifyLastForm('do-lastname', 'do-lastname-error')">
+              <p id="do-lastname-error" class="text-danger"></p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="do-firstname">Firstname*</label>
+              <input type="text" class="form-control" id="do-firstname" name="do-firstname" value="{{user.getFirstname|capitalize}}" onfocus="resetFirst('do-firstname-error')" onblur="verifyFirstForm('do-firstname', 'do-firstname-error')">
+              <span id="do-firstname-error" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="do-phone">Phone</label>
+          <input type="text" class="form-control" id="do-phone" name="do-phone"  value="{{user.getPhone}}" onfocus="resetPhone('do-phone-error')" onblur="verifyPhoneForm('do-phone', 'do-phone-error')">
+          <span id="do-phone-error" class="text-danger"></span>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="do-number">Number</label>
+              <input type="text" class="form-control" id="do-number" name="do-number" value="{{user.getNumber}}" onfocus="resetNumber('do-number-error')" onblur="verifyNumberForm('do-number', 'do-number-error')">
+              <span id="do-number-error" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="do-street">Street</label>
+              <input type="text" class="form-control" name="do-street" value="{{user.getStreet|lower}}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="do-zipcode">Zipcode</label>
+              <input type="text" class="form-control" id="do-zipcode" name="do-zipcode" value="{{user.getZipcode}}" onfocus="resetZipcode('do-zipcode-error')" onblur="verifyZipcodeForm('do-zipcode', 'do-zipcode-error')">
+              <span id="do-zipcode-error" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="do-town">Town</label>
+              <input type="text" class="form-control" name="do-town" value="{{user.getTown|capitalize}}">
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-primary" onclick="verifyInformation()">Update account</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %} 
