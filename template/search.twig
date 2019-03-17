@@ -1,5 +1,9 @@
 {% extends "subTemplate/commun.twig" %} 
 
+{% block head %}
+  <link rel="stylesheet" href="css/search.css">
+{% endblock %}
+
 {% block title %}
   Search
 {% endblock %} 
@@ -8,7 +12,7 @@
 <form action="/search" class="form-inline d-flex justify-content-center">
   <div class="form-group">
     <label for="name" class="bmd-label-floating">Name</label>
-    <input type="text" name="name" class="form-control" id="name" value="{{search}}">
+    <input type="text" name="name" class="form-control" id="name" value="{{name}}">
   </div>
   <div class="form-group">
     <label for="min" class="bmd-label-floating">Min</label>
@@ -24,17 +28,62 @@
     </button>
   </span>
 </form>
-<div class="list-group w-75 mx-auto">
-  <div class="row">
-    {% for item in items %}
-      <div class="col-xl-4 offset-xl-1 col-lg-12">
-        <a href="#" class="list-group-item list-group-item-action my-1 bg-light rounded">
-          <img class="d-block" src="{{item.getIcon}}" alt="{{item.getName}}"></img>
-          <div class="my-auto">{{item.getName}}</div>
-          <p class="badge my-auto ml-auto badge-pill">{{item.getPrice}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></p>
-        </a>
-      </div>
-    {% endfor %}
+{% if items|length > 0 %}
+  <div class="list-group w-75 mx-auto">
+    <div class="row">
+      {% for i in (offset|abs*50 > items|length-1 ? (items|length-50 > 0 ? items|length-50 : 0) : offset|abs*50)..(offset|abs*50+49 > (items|length-1) ? (items|length-1) : (offset|abs*50+49)) %}
+        <div class="col-xl-6 col-lg-12 px-5">
+          <a href="#" class="list-group-item list-group-item-action my-1 bg-light rounded">
+            <img class="d-block" src="{{items[i].getIcon}}" alt="{{items[i].getName}}"></img>
+            <div class="my-auto">{{items[i].getName}}</div>
+            <p class="badge my-auto ml-auto badge-pill">{{items[i].getPrice}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
   </div>
-</div>
+<hr class="mx-5">
+<nav class="d-flex justify-content-center">
+  <ul class="pagination">
+    {% if offset|abs == 0 %}
+      <li class="page-item active"><span class="page-link">1</span></li>
+      {% if (offset|abs+1)*50 < items|length %}
+        <li class="page-item"><a class="page-link" href="/search?name={{name}}&min{{min}}=&max={{max}}&offset=1">2</a></li>
+      {% endif %}
+      {% if (offset|abs+1)*100 < items|length %}
+        <li class="page-item"><a class="page-link" href="/search?name={{name}}&min{{min}}=&max={{max}}&offset=2">3</a></li>
+      {% endif %}
+      {% if (offset|abs+1)*50 < items|length %}
+      <li class="page-item">
+        <a class="page-link" href="/search?name={{name}}&min{{min}}=&max={{max}}&offset={{(items|length/50)|round(0, 'floor')}}">Last</a>
+      </li>
+      {% endif %}
+    {% elseif (offset|abs*50+50) > (items|length) %}
+      <li class="page-item">
+        <a class="page-link" href="/search?name={{name}}&min{{min}}=&max={{max}}&offset=0">First</a>
+      </li>
+      {% if ((items|length/50)|round(0, 'floor')-2)*50 < items|length and ((items|length/50)|round(0, 'floor')-2)*50 >= 0 %}
+        <li class="page-item"><a class="page-link" href="/search?name={{name}}&min{{min}}=&max={{max}}&offset={{(items|length/50)|round(0, 'floor')-2}}">{{(items|length/50)|round(0, 'floor')-1}}</a></li>
+      {% endif %}
+      {% if ((items|length/50)|round(0, 'floor')-1)*50 < items|length and ((items|length/50)|round(0, 'floor')-1)*50 >= 0 %}
+        <li class="page-item"><a class="page-link" href="/search?name={{name}}&min{{min}}=&max={{max}}&offset={{(items|length/50)|round(0, 'floor')-1}}">{{(items|length/50)|round(0, 'floor')}}</a></li>
+      {% endif %}
+      <li class="page-item active"><span class="page-link">{{(items|length/50)|round(0, 'floor')+1}}</span></li>
+    {% else %}
+      <li class="page-item">
+        <a class="page-link" href="/search?name={{name}}&min{{min}}=&max={{max}}&offset=0">First</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="/search?name={{name}}&min{{min}}=&max={{max}}&offset={{offset|abs-1}}">{{offset|abs}}</a></li>
+      <li class="page-item active"><span class="page-link">{{offset|abs+1}}</span></li>
+      <li class="page-item"><a class="page-link" href="/search?name={{name}}&min{{min}}=&max={{max}}&offset={{offset|abs+1}}">{{offset|abs+2}}</a></li>
+      <li class="page-item">
+        <a class="page-link" href="/search?name={{name}}&min{{min}}=&max={{max}}&offset={{(items|length/50)|round(0, 'floor')}}">Last</a>
+      </li>
+    {% endif %}
+    </li>
+  </ul>
+</nav>
+{% else %}
+<p class="text-center display-3">Nothing was found</p>
+{% endif %}
 {% endblock %} 

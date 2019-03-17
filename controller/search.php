@@ -22,6 +22,11 @@ class Search extends IController {
             $maxTwig = $max;
         }
         
+        $offset = 0;
+        if(!empty($_GET["offset"])) {
+            $offset = $_GET["offset"];
+        }
+        
         global $entityManager;
         $itemRepository = $entityManager->getRepository('Item');
         $items = $itemRepository->createQueryBuilder('i')
@@ -35,7 +40,7 @@ class Search extends IController {
         usort($items, function($a, $b) {
             return strcmp($a->getName(), $b->getName());
         });
-        parent::render($response, 'search.twig', array('items' => $items, 'search' => $name, 'min' => $minTwig, 'max' => $maxTwig));
+        parent::render($response, 'search.twig', array('items' => $items, 'name' => $name, 'min' => $minTwig, 'max' => $maxTwig, 'offset' => $offset));
     }
 
 }
