@@ -1,9 +1,53 @@
 {% extends "subTemplate/commun.twig" %} 
 
+{% block head %}
+  <link rel="stylesheet" href="css/detail.css">
+{% endblock %}
+
 {% block title %}
   Detail
 {% endblock %} 
 
 {% block content %}
-test
+  <div class="card m-1 px-3 card-link mt-5 mx-auto mx-5">
+    <div class="row">
+      <img class="card-img-top mx-auto my-5 d-block" src="{{item.getIcon}}" alt="{{item.getName}}"></img>
+    </div>
+    <div class="row">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{item.getName}}</h5>
+        <p class="card-title text-center display-4">"{{item.getQuote}}"</p>
+        <p class="card-text text-justify">{{item.getDescription}}</p>
+      </div>
+    </div>
+    <div class="row my-2">
+      <div class="card-body col-6">
+          {% if isAdmin == true %}
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#deleteModal">
+              <i class="material-icons mx-auto d-block text-danger">delete</i>
+            </button>
+          {% endif %}
+      </div>
+      <div class="card-body col-6">
+        <p class="card-text text-right my-auto">{{item.getPrice}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></p>
+      </div>
+    </div>
+  </div>
+  {% if isAdmin == true %}
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title mx-auto">Delete item ?</h5>
+          </div>
+          <div class="modal-body">
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-danger" href="/delete?item={{item.getID}}" role="button">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %} 

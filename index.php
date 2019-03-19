@@ -21,7 +21,8 @@
     $app->post('/sign-up', '\SignUp:router'); 
     $app->get('/profile', '\Profile:router'); 
     $app->get('/search', '\Search:router'); 
-     $app->get('/detail', '\Detail:router'); 
+    $app->get('/detail', '\Detail:router'); 
+    $app->get('/delete', '\Delete:router'); 
     $app->run(); 
     
 ?>

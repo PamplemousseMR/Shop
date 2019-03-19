@@ -6,6 +6,7 @@ abstract class IController {
     
     public static function render($response, $template, $array) {
         $array['isConnected'] = self::isConnected();
+        $array['isAdmin'] = self::isAdmin();
         global $twig; 
         $template = $twig->loadTemplate($template);
         return $response->write( $template ->render($array));
@@ -23,6 +24,10 @@ abstract class IController {
     public static function isConnected() {
         session_start();
         return isset($_SESSION['connected']);
+    }
+    
+    public static function isAdmin() {
+        return self::isConnected() && self::getUser()->getAdmin();
     }
     
     public static function connect($user) {
