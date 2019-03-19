@@ -33,7 +33,7 @@
     <div class="row">
       {% for i in (offset|abs*50 > items|length-1 ? (items|length-50 > 0 ? items|length-50 : 0) : offset|abs*50)..(offset|abs*50+49 > (items|length-1) ? (items|length-1) : (offset|abs*50+49)) %}
         <div class="col-xl-6 col-lg-12 px-5">
-          <a href="#" class="list-group-item list-group-item-action my-1 bg-light rounded">
+          <a href="/detail?item={{items[i].getId}}" class="list-group-item list-group-item-action my-1 bg-light rounded list-group-link">
             <img class="d-block" src="{{items[i].getIcon}}" alt="{{items[i].getName}}"></img>
             <div class="my-auto">{{items[i].getName}}</div>
             <p class="badge my-auto ml-auto badge-pill">{{items[i].getPrice}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></p>

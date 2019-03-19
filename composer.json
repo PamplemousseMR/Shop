@@ -26,6 +26,7 @@
                 "controller/signDown.php",
                 "controller/signUp.php",
                 "controller/profile.php",
-                "controller/search.php"]
+                "controller/search.php",
+                "controller/detail.php"]
     }
 }

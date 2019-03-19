@@ -23,23 +23,25 @@
               {% else %}
                 <div class="col-md-4 d-md-block d-sm-none d-flex justify-content-center">
               {% endif %}
-                <div class="card m-1 px-3">
-                  <div class="row">
-                    <img class="card-img-top mx-auto my-5 d-block" src="{{items[i*3*2 + j*2 + k].getIcon}}" alt="{{items[i*3*2 + j*2 + k].getName}}"></img>
-                  </div>
-                  <div class="row">
-                    <div class="card-body">
-                      <h5 class="card-title text-center">{{items[i*3*2 + j*2 + k].getName}}</h5>
-    {# >lg && <xl #}  <p class="card-text text-justify d-none d-lg-block d-xl-none">{{items[i*3*2 + j*2 + k].getDescription|length > 70 ? items[i*3*2 + j*2 + k].getDescription|slice(0, 70) ~ '...' : items[i*3*2 + j*2 + k].getDescription}}</p>
-    {# >xl #}         <p class="card-text text-justify d-none d-xl-block">{{items[i*3*2 + j*2 + k].getDescription|length > 125 ? items[i*3*2 + j*2 + k].getDescription|slice(0, 125) ~ '...' : items[i*3*2 + j*2 + k].getDescription}}</p>
+                <a href="/detail?item={{items[i].getId}}" class="custom-card">
+                  <div class="card m-1 px-3 card-link">
+                    <div class="row">
+                      <img class="card-img-top mx-auto my-5 d-block" src="{{items[i*3*2 + j*2 + k].getIcon}}" alt="{{items[i*3*2 + j*2 + k].getName}}"></img>
+                    </div>
+                    <div class="row">
+                      <div class="card-body">
+                        <h5 class="card-title text-center">{{items[i*3*2 + j*2 + k].getName}}</h5>
+{# >lg && <xl #}          <p class="card-text text-justify d-none d-lg-block d-xl-none">{{items[i*3*2 + j*2 + k].getDescription|length > 70 ? items[i*3*2 + j*2 + k].getDescription|slice(0, 70) ~ '...' : items[i*3*2 + j*2 + k].getDescription}}</p>
+{# >xl #}                 <p class="card-text text-justify d-none d-xl-block">{{items[i*3*2 + j*2 + k].getDescription|length > 125 ? items[i*3*2 + j*2 + k].getDescription|slice(0, 125) ~ '...' : items[i*3*2 + j*2 + k].getDescription}}</p>
+                      </div>
+                    </div>
+                    <div class="row my-2">
+                      <div class="card-body">
+                        <p class="card-text text-right my-auto">{{items[i*3*2 + j*2 + k].getPrice}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></p>
+                      </div>
                     </div>
                   </div>
-                  <div class="row my-2">
-                    <div class="card-body">
-                      <p class="card-text text-right my-auto">{{items[i*3*2 + j*2 + k].getPrice}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></p>
-                    </div>
-                  </div>
-                </div>
+                </a>
               </div>
             {% endfor %}
           </div>
