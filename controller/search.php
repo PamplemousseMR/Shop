@@ -6,7 +6,7 @@ class Search extends IController {
     
     public static function router($request, $response, $args) {
         $name = '';
-        if(isset($_GET["name"])) {
+        if(!empty($_GET["name"])) {
             $name = $_GET["name"];
         }
         

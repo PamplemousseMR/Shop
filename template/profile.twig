@@ -145,8 +145,24 @@
         </div>
         <div class="d-flex justify-content-center">
           <button type="button" class="btn btn-primary" onclick="verifyInformation()">Update account</button>
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete account</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mx-auto">Delete account ?</h5>
+      </div>
+      <div class="modal-body">
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-danger" href="/delete?mail={{user.getMail}}" role="button">Delete</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

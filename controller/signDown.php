@@ -6,7 +6,7 @@ class SignDown extends IController {
     
     public static function router($request, $response, $args) { 
         if(parent::isConnected()) {
-            if(isset($_POST["hiddenPassword"]))
+            if(empty($_POST["hiddenPassword"]))
             {
                 $old = $_POST["do-old"];
                 $password = $_POST["do-password"];
@@ -26,7 +26,7 @@ class SignDown extends IController {
                 } else {
                     return parent::displayHome($response, array('message' => 'Old password incorrect'));
                 }
-            } else if(isset($_POST["hiddenUpdate"])) {
+            } else if(empty($_POST["hiddenUpdate"])) {
                 global $entityManager;
                 $userRepository = $entityManager->getRepository('User');
                 $user = $userRepository->findOneBy(array('mail'=> parent::getUser()->getMail()));
