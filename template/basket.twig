@@ -1,14 +1,41 @@
 {% extends "subTemplate/commun.twig" %} 
 
+{% block head %}
+  <link rel="stylesheet" href="css/basket.css">
+{% endblock %}
+
+
 {% block title %}
   Basket
 {% endblock %} 
 
 {% block content %}
   {% if items|length > 0 %}
-    {% for i in 0..items|length-1 %}
-      <p>{{items[i].getName}} {{quantities[i]}} * {{items[i].getPrice}}</p>
-    {% endfor %}
-    <p>{{total}}</p>
+    <table class="table m-5 w-50 mx-auto text-center">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in 0..items|length-1 %}
+          <tr onclick="location.href='/detail?item={{items[i].getId}}'" class="tr-link">
+            <th scope="row"><img src="{{items[i].getIcon}}" alt="{{items[i].getName}}">{{items[i].getName}}</img></th>
+            <td>{{items[i].getPrice}}</td>
+            <td>{{quantities[i]}}</td>
+            <td>{{items[i].getPrice * quantities[i]}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <th scope="row"></th>
+          <td></td>
+          <td></td>
+          <td>{{total}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></td>
+        </tr>
+      </tbody>
+    </table>
   {% endif %}
 {% endblock %} 
