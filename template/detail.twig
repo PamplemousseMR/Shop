@@ -22,11 +22,9 @@
     </div>
     <div class="row mt-4">
       <div class="card-body col-6 my-auto">
-          {% if isConnected == true %}
-          <a class="btn" href="/basket?item={{item.getId}}">
-            <i class="material-icons mx-auto d-block text-info">add_shopping_cart</i>
-          </a>
-        {% endif %}
+        <a class="btn" href="/basket?item={{item.getId}}">
+          <i class="material-icons mx-auto d-block text-info">add_shopping_cart</i>
+        </a>
       </div>
       <div class="card-body col-6 my-auto">
         <p class="card-text text-right">{{item.getPrice}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></p>
