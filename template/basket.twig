@@ -5,8 +5,10 @@
 {% endblock %} 
 
 {% block content %}
-  {% for i in 0..items|length-1 %}
-    <p>{{items[i].getName}} {{quantities[i]}} * {{items[i].getPrice}}</p>
-  {% endfor %}
-  <p>{{total}}</p>
+  {% if items|length > 0 %}
+    {% for i in 0..items|length-1 %}
+      <p>{{items[i].getName}} {{quantities[i]}} * {{items[i].getPrice}}</p>
+    {% endfor %}
+    <p>{{total}}</p>
+  {% endif %}
 {% endblock %} 

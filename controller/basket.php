@@ -17,14 +17,16 @@ class Basket extends IController {
             $items = array();
             $quantities = array();
             $total = 0;
-            foreach($list as $id => $quantity) {
-                $item = $itemRepository->findOneBy(array('id'=>$id));
-                if($item == null) {
-                    return $response->withStatus(302)->withHeader('Location', '/home');
+            if($list != null) {
+                foreach($list as $id => $quantity) {
+                    $item = $itemRepository->findOneBy(array('id'=>$id));
+                    if($item == null) {
+                        return $response->withStatus(302)->withHeader('Location', '/home');
+                    }
+                    array_push($items, $item);
+                    array_push($quantities, $quantity);
+                    $total += $quantity * $item->getPrice();
                 }
-                array_push($items, $item);
-                array_push($quantities, $quantity);
-                $total += $quantity * $item->getPrice();
             }
             parent::render($response, 'basket.twig', array('items' => $items, 'quantities' => $quantities, 'total' => $total));
         } else {

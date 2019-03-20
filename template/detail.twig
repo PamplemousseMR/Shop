@@ -20,25 +20,29 @@
         <p class="card-text text-justify">{{item.getDescription}}</p>
       </div>
     </div>
-    <div class="row my-2">
-      <div class="card-body col-6">
+    <div class="row mt-4">
+      <div class="card-body col-6 my-auto">
           {% if isConnected == true %}
-            <a class="btn my-auto" href="/basket?item={{item.getId}}">
-              <i class="material-icons mx-auto d-block text-info">add_shopping_cart</i>
-            </a>
-          {% endif %}
-          {% if isAdmin == true %}
-            <button type="button" class="btn btn-secondary my-auto" data-toggle="modal" data-target="#deleteModal">
-              <i class="material-icons mx-auto d-block text-danger">delete</i>
-            </button>
-          {% endif %}
+          <a class="btn" href="/basket?item={{item.getId}}">
+            <i class="material-icons mx-auto d-block text-info">add_shopping_cart</i>
+          </a>
+        {% endif %}
       </div>
-      <div class="card-body col-6">
-        <p class="card-text text-right my-auto">{{item.getPrice}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></p>
+      <div class="card-body col-6 my-auto">
+        <p class="card-text text-right">{{item.getPrice}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></p>
       </div>
     </div>
   </div>
   {% if isAdmin == true %}
+    <div class="jumbotron mx-5 px-5" style="background:transparent !important">
+      <h1 class="display-4 text-center">Admin area</h1>
+      <hr>
+      <p class="lead d-flex justify-content-center">
+        <button type="button" class="btn btn-secondary my-auto" data-toggle="modal" data-target="#deleteModal">
+          <i class="material-icons mx-auto d-block text-danger">delete</i>
+        </button>
+      </p>
+    </div>
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
