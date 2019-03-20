@@ -10,32 +10,51 @@
 {% endblock %} 
 
 {% block content %}
-  {% if items|length > 0 %}
-    <table class="table m-5 w-50 mx-auto text-center">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Total</th>
-        </tr>
-      </thead>
+  <table class="table m-5 w-50 mx-auto text-center">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col"></th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    {% if items|length > 0 %}
       <tbody>
         {% for i in 0..items|length-1 %}
-          <tr onclick="location.href='/detail?item={{items[i].getId}}'" class="tr-link">
-            <th scope="row"><img src="{{items[i].getIcon}}" alt="{{items[i].getName}}">{{items[i].getName}}</img></th>
-            <td>{{items[i].getPrice}}</td>
+          <tr>
+            <th onclick="location.href='/detail?item={{items[i].getId}}'" class="th-link" scope="row">
+              <img src="{{items[i].getIcon}}" alt="{{items[i].getName}}">{{items[i].getName}}</img>
+            </th>
+            <td>{{items[i].getPrice}}
+              <img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img>
+            </td>
             <td>{{quantities[i]}}</td>
-            <td>{{items[i].getPrice * quantities[i]}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></td>
+            <td>
+              <div style="display:inline">
+                <div class="btn-group my-0" role="group" aria-label="Basic example">
+                  <a href="/basket?item={{items[i].getId}}&more=" type="button mx-0" class="btn btn-secondary">+</a>
+                  <a href="/basket?item={{items[i].getId}}&less=" type="button mx-0" class="btn btn-secondary">-</a>
+                  <a href="/basket?item={{items[i].getId}}&delete=" type="button mx-0" class="btn btn-secondary">
+                    <i class="material-icons">delete</i>
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>{{items[i].getPrice * quantities[i]}}
+              <img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img>
+            </td>
           </tr>
         {% endfor %}
         <tr>
           <th scope="row"></th>
           <td></td>
           <td></td>
+          <td></td>
           <td>{{total}}<img src="asset/coin.png" class="mx-1" style="width:18px;height:13px"></img></td>
         </tr>
       </tbody>
-    </table>
-  {% endif %}
+    {% endif %}
+  </table>
 {% endblock %} 

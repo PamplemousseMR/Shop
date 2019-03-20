@@ -5,12 +5,22 @@ require_once('php/IController.php');
 class Basket extends IController { 
     
     public static function router($request, $response, $args) { 
-        $id = $_GET['item'];
         global $entityManager;
         $itemRepository = $entityManager->getRepository('Item');
-        $item = $itemRepository->findOneBy(array('id'=>$id));
-        if($item != null) {
-            self::addToCart($item);
+        if(!empty($_GET['item'])) {
+            $id = $_GET['item'];
+            if(isset($_GET['more'])) {
+                self::moreCart($id);
+            } else if(isset($_GET['less'])) {
+                self::lessCart($id);
+            } else if(isset($_GET['delete'])) {
+                self::delCart($id);
+            } else {
+                $item = $itemRepository->findOneBy(array('id'=>$id));
+                if($item != null) {
+                    self::addToCart($item);
+                }
+            }
         }
         $list = self::getCart();
         $items = array();
@@ -43,5 +53,29 @@ class Basket extends IController {
             return $_SESSION['cart'];
         } 
         return null;
+    }
+    
+    public static function lessCart($id) {
+        session_start();
+        if(!empty($_SESSION['cart'][$id])) {
+            $_SESSION['cart'][$id] = $_SESSION['cart'][$id]-1;
+            if($_SESSION['cart'][$id] <= 0) {
+                unset($_SESSION['cart'][$id]);
+            }
+        }
+    }
+    
+    public static function moreCart($id) {
+        session_start();
+        if(!empty($_SESSION['cart'][$id])) {
+            $_SESSION['cart'][$id] = $_SESSION['cart'][$id]+1;
+        }
+    }
+    
+    public static function delCart($id) {
+        session_start();
+        if(!empty($_SESSION['cart'][$id])) {
+            unset($_SESSION['cart'][$id]);
+        }
     }
 }
