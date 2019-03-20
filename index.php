@@ -8,11 +8,16 @@
         'cache' => false
     ));
     
-    $app= new \Slim\App([
-        'settings' => [
-            'displayErrorDetails' => true
-        ]
-    ]);
+    $container = new \Slim\Container();
+
+    $container['notFoundHandler'] = function ($c) {
+        return function ($request, $response) use ($c) {
+            return $response->withStatus(302)->withHeader('Location', '/home');
+        };
+    };
+
+    $app= new \Slim\App($container);
+    
     $app->get('/', '\Home:router'); 
     $app->get('/home', '\Home:router');
     $app->post('/sign-in', '\SignIn:router'); 
