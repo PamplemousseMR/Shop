@@ -1,0 +1,12 @@
+{% extends "subTemplate/commun.twig" %} 
+
+{% block title %}
+  Basket
+{% endblock %} 
+
+{% block content %}
+  {% for i in 0..items|length-1 %}
+    <p>{{items[i].getName}} {{quantities[i]}} * {{items[i].getPrice}}</p>
+  {% endfor %}
+  <p>{{total}}</p>
+{% endblock %} 

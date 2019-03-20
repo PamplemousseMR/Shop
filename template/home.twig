@@ -23,7 +23,7 @@
               {% else %}
                 <div class="col-md-4 d-md-block d-sm-none d-flex justify-content-center">
               {% endif %}
-                <a href="/detail?item={{items[i].getId}}" class="custom-card">
+                <a href="/detail?item={{items[i*3*2 + j*2 + k].getId}}" class="custom-card">
                   <div class="card m-1 px-3 card-link">
                     <div class="row">
                       <img class="card-img-top mx-auto my-5 d-block" src="{{items[i*3*2 + j*2 + k].getIcon}}" alt="{{items[i*3*2 + j*2 + k].getName}}"></img>

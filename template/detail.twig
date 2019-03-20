@@ -22,8 +22,13 @@
     </div>
     <div class="row my-2">
       <div class="card-body col-6">
+          {% if isConnected == true %}
+            <a class="btn my-auto" href="/basket?item={{item.getId}}">
+              <i class="material-icons mx-auto d-block text-info">add_shopping_cart</i>
+            </a>
+          {% endif %}
           {% if isAdmin == true %}
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#deleteModal">
+            <button type="button" class="btn btn-secondary my-auto" data-toggle="modal" data-target="#deleteModal">
               <i class="material-icons mx-auto d-block text-danger">delete</i>
             </button>
           {% endif %}
