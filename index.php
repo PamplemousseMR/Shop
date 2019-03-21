@@ -27,7 +27,6 @@
     $app->get('/profile', '\Profile:router'); 
     $app->get('/search', '\Search:router'); 
     $app->get('/detail', '\Detail:router'); 
-    $app->get('/delete', '\Delete:router'); 
     $app->get('/basket', '\Basket:router'); 
     $app->run(); 
     

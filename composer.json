@@ -28,7 +28,6 @@
                 "controller/profile.php",
                 "controller/search.php",
                 "controller/detail.php",
-                "controller/delete.php",
                 "controller/basket.php"]
     }
 }
