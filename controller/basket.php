@@ -30,11 +30,12 @@ class Basket extends IController {
             foreach($list as $id => $quantity) {
                 $item = $itemRepository->findOneBy(array('id'=>$id));
                 if($item == null) {
-                    return $response->withStatus(302)->withHeader('Location', '/home');
+                    self::delCart($id);
+                } else {
+                    array_push($items, $item);
+                    array_push($quantities, $quantity);
+                    $total += $quantity * $item->getPrice();
                 }
-                array_push($items, $item);
-                array_push($quantities, $quantity);
-                $total += $quantity * $item->getPrice();
             }
         }
         parent::render($response, 'basket.twig', array('items' => $items, 'quantities' => $quantities, 'total' => $total));
