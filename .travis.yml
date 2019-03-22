@@ -1,0 +1,13 @@
+language: php
+sudo: false
+
+matrix:
+  include:
+    - os: linux
+
+before_install:
+  - eval
+
+script:
+  - composer install
+  - composer update

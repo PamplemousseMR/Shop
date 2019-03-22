@@ -9,8 +9,8 @@ $config = Setup::createYAMLMetadataConfiguration(array(__DIR__ . "/config/yaml")
 $conn = array(
     'driver' => 'pdo_mysql',
     'user' => 'pamplemoussemr',
-    'password' => '',
-    'dbname' => 'Isaac',
+    'password' => 'admin',
+    'dbname' => 'c9',
     'port' => '3306'
 );
 

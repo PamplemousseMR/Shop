@@ -11,12 +11,11 @@ class Profile extends IController {
                 $mail = $_GET['mail'];
                 $userRepository = $entityManager->getRepository('User');
                 $user = $userRepository->findOneBy(array('mail'=> $mail));
-                if($user == null) {
-                    break;
+                if($user != null) {
+                    $entityManager->remove($user);
+                    parent::disconnect();
+                    $entityManager->flush();
                 }
-                $entityManager->remove($user);
-                parent::disconnect();
-                $entityManager->flush();
             } else {
                 return parent::render($response, 'profile.twig', array('user' => parent::getUser()));
             }

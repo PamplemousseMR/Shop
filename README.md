@@ -1,6 +1,10 @@
-# Isaac
+# Shop
 
-Website that sell Isaac's items.
+Website that sell items.
+
+## Travis
+
+[![Build Status](https://travis-ci.com/PamplemousseMR/Shop.svg?branch=master)](https://travis-ci.com/PamplemousseMR/Shop)
 
 ## Getting Started
 
