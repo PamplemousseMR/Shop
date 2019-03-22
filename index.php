@@ -28,6 +28,7 @@
     $app->get('/search', '\Search:router'); 
     $app->get('/detail', '\Detail:router'); 
     $app->get('/basket', '\Basket:router'); 
+    $app->get('/create', '\Create:router'); 
     $app->run(); 
     
 ?>
