@@ -1,20 +1,23 @@
 {% extends "subTemplate/commun.twig" %} 
 
+{% block head %}
+  <link rel="stylesheet" href="css/create.css">
+{% endblock %}
+
 {% block title %}
   Create
 {% endblock %} 
 
 {% block content %}
-    <div class="w-50 mx-auto my-5">
+    <div class="w-custom mx-auto my-5">
       <div class="mb-3">
         <h1 class="display-4 my-auto text-center">Create item</h1>
       </div>
-      <form action="/detail" class="mx-5" name="updateInformations" method="get">
-        <input name="item" type="hidden">
+      <form action="/create" class="mx-5" method="get">
         <div class="mx-5">
         <div class="form-group">
             <label for="name">image url</label>
-            <input type="text" class="form-control" name="name" placeholder="url">
+            <input type="text" class="form-control" name="url" placeholder="url">
         </div>
         <div class="form-group">
             <label for="name">name</label>

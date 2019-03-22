@@ -13,7 +13,7 @@ class Detail extends IController {
             return $response->withStatus(302)->withHeader('Location', '/home');
         }
         if(parent::isConnected() && parent::isAdmin()) {
-            if(!empty($_GET["delete"])) {
+            if(isset($_GET["delete"])) {
                 $entityManager->remove($item);
                 $entityManager->flush();
                 return $response->withStatus(302)->withHeader('Location', '/home');
