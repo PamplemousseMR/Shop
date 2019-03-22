@@ -13,6 +13,11 @@
       <li class="nav-item">
         <a class="nav-link" href="/profile">Profile</a>
       </li>
+      {% if isAdmin %}
+        <li class="nav-item">
+          <a class="nav-link" href="/create">Create</a>
+        </li>
+      {% endif %}
     {% endif %}
     <div class="mx-auto"></div>
     {% if isConnected == false %}
