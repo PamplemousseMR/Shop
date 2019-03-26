@@ -13,7 +13,7 @@ class SignIn extends IController {
         $user = $userRepository->findOneBy(array('mail'=>$mail));
         
         $connected = false;
-        if($user!=null && strcmp($user->getPassword(), $password)==0) {
+        if($user!=null && password_verify($password, $user->getPassword())) {
             $connected = true;
             if(!parent::isConnected()) {
                 parent::connect($user);

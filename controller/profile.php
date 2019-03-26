@@ -6,7 +6,7 @@ class Profile extends IController {
     
     public static function router($request, $response, $args) { 
         if(parent::isConnected()) {
-            if(!empty($_GET["mail"])) {
+            if(!empty($_GET["mail"]) && strcmp(parent::getUser()->getMail(), $_GET["mail"]) == 0) {
                 global $entityManager;
                 $mail = $_GET['mail'];
                 $userRepository = $entityManager->getRepository('User');

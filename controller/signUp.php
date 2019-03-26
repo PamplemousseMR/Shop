@@ -18,7 +18,7 @@ class SignUp extends IController {
                 if($password == $confirm) {
                     $user = new User();
                     $user->setMail($mail);
-                    $user->setPassword($password);
+                    $user->setPassword(password_hash($password, PASSWORD_DEFAULT));
                     $user->setLastname(strtoupper($_POST["up-lastname"]));
                     $user->setFirstname(ucfirst(strtolower($_POST["up-firstname"])));
                     $user->setPhone($_POST["up-phone"]);
