@@ -2,9 +2,9 @@
 
 Website that sell items.
 
-## Travis
+## CI
 
-[![Build Status](https://travis-ci.com/PamplemousseMR/Shop.svg?branch=master)](https://travis-ci.com/PamplemousseMR/Shop)
+![Build Status](https://github.com/PamplemousseMR/Shop/actions/workflows/build.yml/badge.svg)
 
 ## Getting Started
 

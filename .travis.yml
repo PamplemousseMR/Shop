@@ -1,7 +1,0 @@
-language: php
-sudo: false
-os: linux
-
-script:
-  - composer install
-  - composer update
